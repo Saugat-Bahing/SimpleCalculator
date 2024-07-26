@@ -34,4 +34,21 @@ describe("AddFunctionBehavour", () => {
     it("Add function should add comma seperated numbers", () => {
         expect(simpleCalculator.add("100,21,32,89")).toEqual(242);
     })
+
+    it("Add function should add comma seperated numbers along with new line", () => {
+        expect(simpleCalculator.add("100,21\n32,89")).toEqual(242);
+    })
+
+    it("Add function should add comma seperated numbers along with new line", () => {
+        expect(simpleCalculator.add("100\n21\n32\n89")).toEqual(242);
+    })
+
+    it("Add function should add dynamic deliminator seperated numbers", () => {
+        expect(simpleCalculator.add("//;\n100;21;32;89")).toEqual(242);
+    })
+
+    
+    it("Add function should add dynamic deliminator seperated numbers", () => {
+        expect(simpleCalculator.add("//;\n100;21\n32\n89")).toEqual(242);
+    })
 })

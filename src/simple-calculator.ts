@@ -6,7 +6,13 @@ export class SimpleCalculator {
         if(numbers.trim() == ""){
             throw new Error("Input string cannot be empty");
         }
-        const splitNumbers = numbers.split(',').map(no => parseInt(no.trim()));
+        let deliminator = ",";
+        if(numbers.startsWith("//")){
+            deliminator = numbers[2];
+            numbers = numbers.substring(4);
+        }
+        const splitRegex = new RegExp(`${deliminator}|\n`)
+        const splitNumbers = numbers.split(splitRegex).map(no => parseInt(no.trim()));
         return this.sum(splitNumbers);
     }
 
