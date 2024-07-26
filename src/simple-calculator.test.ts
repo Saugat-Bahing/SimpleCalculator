@@ -22,6 +22,18 @@ describe("AddFunctionErrorValidation", () => {
             simpleCalculator.add("");
           }).toThrow("Input string cannot be empty");
     })
+
+    it("Add function should take negative numbers in string", () => {
+        expect(() => {
+            simpleCalculator.add("10, 20, -2, 0");
+          }).toThrow("negative numbers not allowed -2.");
+    })
+
+    it("Add function should take multiple negative numbers in string", () => {
+        expect(() => {
+            simpleCalculator.add("-10, 20, -2, 0, -100, 2, 0, -11");
+          }).toThrow("negative numbers not allowed -10, -2, -100, -11.");
+    })
 })
 
 describe("AddFunctionBehavour", () => {
