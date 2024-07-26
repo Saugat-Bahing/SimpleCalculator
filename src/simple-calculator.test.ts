@@ -1,7 +1,11 @@
-
+import { SimpleCalculator } from "./simple-calculator";
 
 describe("SimpleCalculator", () => {
-    it("should fail", () => {
-        expect(1).toBe(2);
+    const simpleCalculator = new SimpleCalculator();
+
+    it("Add function should take non empty string", () => {
+        expect(() => {
+            simpleCalculator.add("");
+          }).toThrow("Input string cannot be empty");
     })
 })
