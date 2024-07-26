@@ -23,3 +23,15 @@ describe("AddFunctionErrorValidation", () => {
           }).toThrow("Input string cannot be empty");
     })
 })
+
+describe("AddFunctionBehavour", () => {
+    const simpleCalculator = new SimpleCalculator();
+
+    it("Add function should add comma seperated numbers", () => {
+        expect(simpleCalculator.add("1,2,3")).toEqual(6);
+    })
+
+    it("Add function should add comma seperated numbers", () => {
+        expect(simpleCalculator.add("100,21,32,89")).toEqual(242);
+    })
+})
