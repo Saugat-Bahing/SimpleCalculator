@@ -1,5 +1,5 @@
 export class SimpleCalculator {
-    public add(numbers: string): number {
+    public calculate(numbers: string): number {
         this.validateInputNullOrUndefine(numbers);
         if (numbers.trim() === "") {
             return 0;
@@ -7,8 +7,22 @@ export class SimpleCalculator {
         this.validateNegaiveNumbers(numbers);
         const deliminator = this.getDeliminator(numbers);
         const formattedNumbers = this.getNumbersFromString(numbers, deliminator);
+        console.log(formattedNumbers);
+        if (deliminator === "*") {
+            return this.multiply(formattedNumbers);
+        }
         return this.sum(formattedNumbers);
     }
+
+    private multiply(numbers: number[]): number {
+        let product: number = 1;
+        for (let no of numbers) {
+            product *= no;
+        }
+        return product;
+    }
+
+
 
     private removeDeliminatorFromStartOfString(numbers: string): string {
         if (numbers.startsWith("//")) {
@@ -47,11 +61,15 @@ export class SimpleCalculator {
         return deliminator;
     }
 
+    private getNumbersFromStringMultiply() {
+
+    }
+
     private getNumbersFromString(numbers: string, deliminator: string): number[] {
         const formattedNumbers = this.removeDeliminatorFromStartOfString(numbers);
         const noAfterQuetionMark = formattedNumbers.match(/\?(\d+)/g);
 
-        const splitRegex = new RegExp(`${deliminator}|\n`);
+        const splitRegex = deliminator === "*" ? "*" : new RegExp(`${deliminator}|\n`);
         const splitNumbers = formattedNumbers
             .split(splitRegex)
             .map((no) => parseInt(no.trim()));
